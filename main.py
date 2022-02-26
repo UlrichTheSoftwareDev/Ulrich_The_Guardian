@@ -1,5 +1,6 @@
 import argparse
 from ulrich_the_guardian.generate_password import generate
+from ulrich_the_guardian.add_password import add_password_db
 
 def get_parser(h):
 	parser = argparse.ArgumentParser(add_help=h)
@@ -18,10 +19,10 @@ if (__name__=="__main__"):
 	if args.command == 'init':
 		print("INIT")
 	elif args.command == 'generate':
-		print("GENERATE")
 		generate()
 	elif args.command == 'add_password':
 		print("ADD_PASSWORD")
+		add_password_db()
 	elif args.command == 'list':
 		print("LIST")
 	elif args.command == 'show':
