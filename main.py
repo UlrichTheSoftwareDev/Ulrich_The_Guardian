@@ -3,6 +3,7 @@ from ulrich_the_guardian.generate_password import generate
 from ulrich_the_guardian.add_password import add_password_db
 from ulrich_the_guardian.list_password import list_password_db
 from ulrich_the_guardian.remove_password import remove_password_db
+from ulrich_the_guardian.show_password import show_password_db
 
 def get_parser(h):
 	parser = argparse.ArgumentParser(add_help=h)
@@ -27,6 +28,6 @@ if (__name__=="__main__"):
 	elif args.command == 'list':
 		list_password_db()
 	elif args.command == 'show':
-		print("SHOW")
+		show_password_db()
 	elif args.command == 'remove':
 		remove_password_db()
