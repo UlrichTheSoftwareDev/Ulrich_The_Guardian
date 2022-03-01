@@ -2,7 +2,7 @@
 
 ## About the project
 
-Ulrich The Guardian is a lightweight multi-users desktop password manager made with Python3.
+Ulrich The Guardian is a lightweight desktop password manager made with Python3.
 
 You can view, generate and input password.
 
