@@ -32,12 +32,15 @@ To check Python3 version:
 
 ```
 python3 --version
+apt install python3-pip
 ```
 
 * Then clone the project.
 
 ```
 git clone https://github.com/UlrichTheSoftwareDev/Ulrich_The_Guardian.git
+cd Ulrich_The_Guardian/
+pip3 install -r requirement.txt
 ```
 
 * Test.
