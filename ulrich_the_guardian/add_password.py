@@ -5,9 +5,11 @@ import hashlib
 import random
 import string
 import base64
+from datetime import date
 from Crypto.Cipher import AES
 
 def add_password_db():
+    """Add password in DB: minimum lenght 8 char -> no complexity needed, 16 bytes IV and 32 bytes key AES 256 CFB"""
     const_lenght = 8
     val = getpass.getpass('Enter your password:')
     if len(val) < const_lenght:
@@ -21,6 +23,11 @@ def add_password_db():
         if message != message_con:
             sys.exit("ERROR: password does not match !")
 
+        email = input("Email:")
+        comment = input("Comment:")
+        today = date.today()
+        date_now = today.strftime("%d/%m/%Y")
+
         hashed_string = hashlib.sha256(val.encode('utf-8')).hexdigest()
         hashed_string_enc = hashed_string[0:32].encode()
 
@@ -31,36 +38,6 @@ def add_password_db():
 
         cipher_text = enc_s.encrypt(message_enc)
         encoded_cipher_text = base64.b64encode(cipher_text)
+
         db = TinyDB('./data/db.json')
-        db.insert({'key': str(hashed_string_enc), 'iv': str(iv_enc), 'message': str(encoded_cipher_text)})
-
-    ##    User = Query()
-    ##    toto =db.get(User.message == "b'oTje6xMc+QxnEr/Ohw=='")
-    ##    a = toto.get("key")
-    ##    b = toto.get("iv")
-    ##    c = toto.get("message")
-    ##    print(a, type(a), len(a))
-    ##    print(c, type(c), len(c))
-    ##    a = a[2:]
-    ##    a = a[:-1]
-    ##    b = b[2:]
-    ##    b = b[:-1]
-    ##    a_enc = a.encode()
-    ##    b_enc = b.encode()
-    ##    c = c[2:]
-    ##    c = c[:-1]
-    ##    print(a_enc)
-    ##    print(b_enc)
-    ##    print(c)
-
-
-
-
-    #    decryption_suite = AES.new(hashed_string_enc, AES.MODE_CFB,iv_enc)
-    #    plain_text = decryption_suite.decrypt(base64.b64decode(encoded_cipher_text))
-    #    print(plain_text)
-    ##    decryption_suite = AES.new(a_enc, AES.MODE_CFB,b_enc)
-    ##    plain_text = decryption_suite.decrypt(base64.b64decode(c))
-    ##    print(plain_text)
-    #db = TinyDB('./data/db.json')
-    #db.insert({'type': 'apple'})
+        db.insert({'Date': str(date_now), 'Email': str(email), 'IV': str(iv_enc), 'Password': str(encoded_cipher_text), 'Comment': str(comment)})

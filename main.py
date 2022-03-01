@@ -6,9 +6,9 @@ from ulrich_the_guardian.remove_password import remove_password_db
 from ulrich_the_guardian.show_password import show_password_db
 
 def get_parser(h):
+	"""Main parser: generate, add, list, show, remove """
 	parser = argparse.ArgumentParser(add_help=h)
 	subparser = parser.add_subparsers(dest='command')
-	init_database = subparser.add_parser('init', help="Init the database.")
 	generate_password = subparser.add_parser('generate', help='Generate a random password.')
 	add_password = subparser.add_parser('add_password', help='Add a passowrd.')
 	list_password = subparser.add_parser('list', help='List password.')
@@ -19,9 +19,7 @@ def get_parser(h):
 if (__name__=="__main__"):
 	p = get_parser(h=True)
 	args = p.parse_args()
-	if args.command == 'init':
-		print("INIT")
-	elif args.command == 'generate':
+	if args.command == 'generate':
 		generate()
 	elif args.command == 'add_password':
 		add_password_db()

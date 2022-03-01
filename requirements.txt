@@ -1,2 +1,3 @@
 tinydb
 secret
+hashlib

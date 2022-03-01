@@ -1,37 +1,34 @@
 from tinydb import TinyDB, Query
 import getpass
 import sys
-import hashlib
-import random
-import string
 import base64
+import hashlib
 from Crypto.Cipher import AES
 
 def show_password_db():
+    """Decrypt password from DB: get message from doc_id"""
     db = TinyDB('./data/db.json')
     val = input("Password ID: ")
+    key = getpass.getpass("Key:")
     User = Query()
-    print(bool(db.get(doc_id=44)))
+    val_bool = bool(db.get(doc_id=val))
+    if val_bool == True:
+        val_result = db.get(doc_id=val)
 
+        val_key = hashlib.sha256(key.encode('utf-8')).hexdigest()
+        val_iv = val_result.get("iv")
+        val_message = val_result.get("message")
 
-#    toto = db.get(User.doc_id == "1")
-#    print(toto)
-#    a = toto.get("key")
-#    b = toto.get("iv")
-#    c = toto.get("message")
-#    print(a, type(a), len(a))
-#    print(c, type(c), len(c))
-#    a = a[2:]
-#    a = a[:-1]
-#    b = b[2:]
-#    b = b[:-1]
-#    a_enc = a.encode()
-#    b_enc = b.encode()
-#    c = c[2:]
-#    c = c[:-1]
-#    print(a_enc)
-#    print(b_enc)
-#    print(c)
-#    decryption_suite = AES.new(a_enc, AES.MODE_CFB,b_enc)
-#    plain_text = decryption_suite.decrypt(base64.b64decode(c))
-#    print(plain_text)
+        val_iv = val_iv[2:]
+        val_iv = val_iv[:-1]
+        val_message = val_message[2:]
+        val_message = val_message[:-1]
+
+        val_key_enc = val_key[0:32].encode()
+        val_iv_enc = val_iv.encode()
+
+        decryption_suite = AES.new(val_key_enc, AES.MODE_CFB,val_iv_enc)
+        plain_text = decryption_suite.decrypt(base64.b64decode(val_message))
+        print(plain_text)
+    else:
+        sys.exit("Password does not exist !")
