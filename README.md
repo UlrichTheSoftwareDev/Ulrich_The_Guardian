@@ -1,4 +1,4 @@
-# DOCUMENTATION <img src="data/main_icon.png" width=50 />
+# DOCUMENTATION <img src="data/main_icon.png" width=100 />
 
 ## About the project
 
@@ -30,21 +30,21 @@ These instructions will get you a copy of the project up and running on your loc
 
 To check Python3 version:
 
-'''
+```
 python3 --version
-'''
+```
 
 * Then clone the project.
 
-'''
+```
 git clone https://github.com/UlrichTheSoftwareDev/Ulrich_The_Guardian.git
-'''
+```
 
 * Test.
 
-'''
+```
 python3 /path_to_Ulrich_The_Guardian/main.py --help
-'''
+```
 
 ## Contributing
 
@@ -66,4 +66,4 @@ Pateyron Sacha - sachapateyron@gmail.com
 
 ## Links and Resources
 
-* The icons I use -> GNU General Public License v3.0 -> [Source]( https://iconarchive.com/show/papirus-apps-icons-by-papirus-team/pingus-icon-icon.html)
+* The icons I use -> GNU General Public License v3.0 -> [Source]( https://www.flaticon.com/free-icon/guardian_2451190?term=guardian&page=1&position=2&page=1&position=2&related_id=2451190&origin=search)
